@@ -143,8 +143,8 @@ format_size(guint64 size, guint64 max_size, int want_bits) {
 
 	const Format all_formats[2][3] = { { { 1UL << 10, "%.1f KiB" }, {
 			1UL << 20, "%.1f MiB" }, { 1UL << 30, "%.1f GiB" } }, { { 1000,
-			"%.1f kbit" }, { 1000000, "%.1f Mbit" },
-			{ 1000000000, "%.1f Gbit" } } };
+			"%.1f kb" }, { 1000000, "%.1f Mb" },
+			{ 1000000000, "%.1f Gb" } } };
 
 	//Format formats[3];
 	const Format *formats = all_formats[want_bits ? 1 : 0];
@@ -182,8 +182,8 @@ format_size(guint64 size, guint64 max_size, int want_bits) {
 
 char *format_rate(guint64 rate, guint64 max_rate, int want_bits) {
 	char *bytes = format_size(rate, max_rate, want_bits);
-	// xgettext: rate, 10MiB/s or 10Mbit/s
-	char *formatted_rate = g_strdup_printf("%s/s", bytes);
+	// xgettext: rate, 10MiB/s or 10Mbit/s or 10Mbps
+	char *formatted_rate = g_strdup_printf("%sps", bytes);
 	g_free(bytes);
 	return formatted_rate;
 }
